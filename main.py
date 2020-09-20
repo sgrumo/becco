@@ -9,7 +9,7 @@ team = [names[::2], names[1::2]]
 
 def main():
     game = Game([Player(name) for name in names])
-    game.look_for_starting_player()
+    game.start_game()
 
 
 if __name__ == "__main__":
