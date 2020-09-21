@@ -4,7 +4,6 @@ from const import RankValues
 
 
 names = ['Bartolomeo', 'Pierugo', 'Ivana', 'Ritardenzio']
-team = [names[::2], names[1::2]]
 
 
 def main():
