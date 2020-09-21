@@ -147,6 +147,7 @@ class Game():
             if value == winner_card:
                 return key
 
+    # Calcolo i punteggi per squadra
     def calculate_team_points(self):
         for card in self.blue_cards:
             if str(card.rank) in RankValues:
@@ -159,16 +160,18 @@ class Game():
         self.blue_round_points = floor(self.blue_round_points / 3)
         self.red_round_points = floor(self.red_round_points / 3)
 
+    # Resetto i valori della partita
+    def reset_game(self):
+        self.round = 0
+        self.blue_round_points = 0
+        self.red_round_points = 0
+        self.blue_cards = []
+        self.red_cards = []
     # Tiene tutta la logica del gioco
+
     def start_game(self):
         # Ciclo finchè una delle due squadre non raggiungere o supera il punteggio di vittoria
         while (self.blue_total_points <= POINT_LIMIT and self.red_total_points <= POINT_LIMIT):
-            # Reset valori della partita
-            self.round = 0
-            self.blue_round_points = 0
-            self.red_round_points = 0
-            self.blue_cards = []
-            self.red_cards = []
             # Distribuisco le carte
             self.setup_game()
             # All'inizio del gioco il giocatore che inizia è quello con il 4 di denara (solo se è la prima partita)
@@ -225,5 +228,6 @@ class Game():
             # Dopo aver calcolato il punteggio stabilisco il giocatore successivo che mette la briscola e gioca per primo
             self.deciding_player_index = (
                 self.deciding_player_index + 1) % NUM_OF_PLAYERS
+            self.reset_game()
 
         # Esco dal ciclo del punteggio, proclamo il vincitore
